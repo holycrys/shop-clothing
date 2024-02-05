@@ -71,7 +71,11 @@ export const getCategoriesAndDocuments = async () => {
   return categoryMap;
 }
 
-export const createUserDocumentFromAuth = async (userAuth, additionalInformation={}) => {
+export const createUserDocumentFromAuth = async (
+   userAuth, 
+   additionalInformation={}) => {
+     if(!userAuth) return;
+
   const userDocRef = doc(db, 'users', userAuth.uid);
 
   console.log(userDocRef);
@@ -98,6 +102,7 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
   }
   return userDocRef;
 };
+
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if(!email || !password) return;
 
